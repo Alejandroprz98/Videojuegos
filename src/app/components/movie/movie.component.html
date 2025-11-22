@@ -1,0 +1,59 @@
+
+<div *ngIf="isLoading" class="text-center mt-5">
+  <h3 class="text-white">Cargando detalles de la película...</h3>
+</div>
+
+
+<div *ngIf="error" class="text-danger text-center mt-4">
+  {{ error }}
+</div>
+
+
+<div *ngIf="!isLoading && movie" class="container d-flex justify-content-center mt-5">
+  <div class="card bg-light shadow-lg p-4" style="max-width: 700px; width: 100%; border-radius: 12px;">
+    
+    
+    <img *ngIf="movie.cover"
+         [src]="'/ruta/a/covers/' + movie.cover"
+         alt="Cover"
+         class="img-fluid rounded mb-4"
+         style="max-height: 400px; object-fit: cover; width: 100%;" />
+
+    
+    <h2 class="mb-3 text-center text-dark">{{ movie.title || 'Sin título' }}</h2>
+
+   
+    <p class="mb-2">
+      <strong>Año:</strong>
+      <span class="text-muted">{{ movie.year }}</span>
+    </p>
+
+    
+    <p class="mb-2">
+      <strong>Sinopsis:</strong>
+      <br />
+      {{ movie.synopsis }}
+    </p>
+
+    
+    <p class="mb-3">
+      <strong>Creado en:</strong>
+      <span class="text-muted">{{ movie.created_at | date: 'medium' }}</span>
+    </p>
+
+    
+    <div class="text-center mt-4">
+      <a routerLink="/movies" class="btn btn-outline-primary">
+        ← Volver al catálogo
+      </a>
+
+       <a [routerLink]="['/movies/edit', movie.id]" class="btn btn-warning me-2">
+        ✏️ Editar
+      </a>
+      <button (click)="deleteMovie()" class="btn btn-danger">
+        🗑️ Eliminar
+      </button>
+    </div>
+
+  </div>
+</div>

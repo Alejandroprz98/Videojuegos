@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <h3 class="text-white mb-3">Agregar Película</h3>
+
+  <form [formGroup]="movieForm" (ngSubmit)="addMovie()" class="bg-light p-4 rounded">
+    <div class="mb-3">
+      <label class="form-label">Título</label>
+      <input type="text" class="form-control" formControlName="title" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Sinopsis</label>
+      <textarea class="form-control" rows="3" formControlName="synopsis"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Año</label>
+      <input type="number" class="form-control" formControlName="year" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">URL de Portada (Cover)</label>
+      <input type="text" class="form-control" formControlName="cover" />
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="movieForm.invalid">Guardar</button>
+    <a routerLink="/" class="btn btn-secondary ms-2">Cancelar</a>
+  </form>
+</div>

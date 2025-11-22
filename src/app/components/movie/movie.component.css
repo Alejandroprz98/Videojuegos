@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  margin-top: 40px; /* margen superior */
+}
+
+.card {
+  max-width: 600px;
+  width: 100%;
+}
