@@ -2,7 +2,7 @@
 
 
 body {
-  background-image: url('fondo.jpg'); 
+  background-image: url('fondo.png'); 
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -30,4 +30,21 @@ footer {
   color: white;
   padding: 1rem;
   border-radius: 8px;
+}
+
+.digital-media {
+  background-color: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.1);
+}
+
+.digital-media h2 {
+  margin-bottom: 1rem;
+}
+
+.digital-media h5 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }

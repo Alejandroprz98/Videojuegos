@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Catálogo de Películas</title>
+  <title>Catálogo de Videojuegos</title>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -15,8 +15,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
     <div class="container-fluid">
       <a class="navbar-brand d-flex align-items-center" routerLink="/">
-        <img src="assets/logo_catalogo.png" alt="Logo" width="50" class="me-2">
-        Mi CineApp
+        <img src="assets/control1.png" alt="Logo" width="50" class="me-2">
+        Mi VideojuegoApp
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
             <a class="nav-link" routerLink="/movies">Catálogo</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/movies/add">Agregar Película</a>
+            <a class="nav-link" routerLink="/movies/add">Agregar un Videojuego</a>
           </li>
         </ul>
       </div>
@@ -39,29 +39,63 @@
 
     
     <header class="d-flex align-items-center mb-4">
-      <img src="assets/logo_catalogo.png" alt="Catálogo de Películas" width="100" class="me-3">
-      <h1 class="h3">Catálogo de Películas</h1>
+      <img src="assets/videojuegos.png" alt="Catálogo de Películas" width="100" class="me-3">
+      <h1 class="h3">Catálogo de Videojuegos</h1>
     </header>
 
     <!-- Sección de descripción -->
     <section class="catalog-description mb-5">
       <p>
-        Bienvenido al catálogo de películas. Aquí encontrarás una selección cuidadosamente curada de películas de distintos géneros, épocas y estilos. Navega por nuestro sitio para descubrir clásicos del cine, novedades, recomendaciones y mucho más.
+        Bienvenido al Catálogo de Videojuegos. Aquí encontrarás una selección cuidadosamente de los mejores Videojuegos de distintos géneros, épocas y estilos. Navega por nuestro sitio para descubrir clásicos, novedades, recomendaciones y mucho más.
       </p>
     </section>
 
     <!-- Aquí se renderizan los componentes según la ruta -->
     <router-outlet></router-outlet>
 
+
     <!-- Footer -->
     <footer class="mt-5 text-muted">
-      <p>Materia: Conceptualización de entornos de desarrollo de aplicaciones y servicios</p>
+      <p>Materia: Conceptualización de servicios en la nube</p>
       <p>Nombre: Alejandro Pérez Rosas</p>
       <p>Código: 214220364</p>
-      <p>Correo: alejandroperezrosashotmail.com</p>
+
+       <!-- Sección de medios digitales -->
+<section class="digital-media mb-5">
+  <h2>Medios Digitales</h2>
+  <p>Aquí puedes ver medios digitales mediante enlaces de otras plataformas de servicios en la nube.</p>
+
+  <!-- Video de YouTube -->
+  <div class="mb-3">
+    <h5>Video Destacado</h5>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/https://youtu.be/0MFIbJJ_wTk?si=jPUo4kbUkc3CyOji" 
+      title="Video de YouTube" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <!-- Imagen desde un servicio en la nube (ej. Dropbox, Google Drive) -->
+  <div class="mb-3">
+    <h5>Enlace de Dropbox</h5>
+    <a href="https://www.dropbox.com/" target="_blank">
+      <img src="https://dsistemasfredy.wordpress.com/wp-content/uploads/2015/02/dropbox.png" 
+           alt="Imagen del Videojuego" class="img-fluid" style="max-width: 150px">
+    </a>
+  </div>
+
+
+  <div class="mb-3">
+    <h5>Drive</h5>
+    <a href="https://drive.google.com/" target="_blank">
+      Abrir enlace
+    </a>
+  </div>
+</section>
     </footer>
 
+    
+
   </div>
+
+  
 
  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
