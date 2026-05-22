@@ -18,21 +18,24 @@ export class AddMovieComponent {
   ) {
 
     this.movieForm = this.fb.group({
-      titulo: ['', Validators.required],
-      sinopsis: ['', Validators.required],
-      anio: ['', Validators.required],
-      cover: ['', Validators.required]
+      titulo: ['', [Validators.required, Validators.minLength(2)]],
+      sinopsis: ['', [Validators.required, Validators.minLength(10)]],
+      anio: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
+      cover: ['', [Validators.required]]
     });
 
   }
 
   addMovie() {
 
-    console.log('FORM VALUE FINAL:', JSON.stringify(this.movieForm.value));
-
+    // 🔥 Validación fuerte
     if (this.movieForm.invalid) {
+      alert('❌ Completa todos los campos correctamente');
+      this.movieForm.markAllAsTouched();
       return;
     }
+
+    console.log('FORM VALUE FINAL:', JSON.stringify(this.movieForm.value));
 
     const data = this.movieForm.value;
 
@@ -40,11 +43,11 @@ export class AddMovieComponent {
 
     this.movieService.addMovie(data).subscribe({
       next: () => {
-        alert('Videojuego agregado correctamente');
+        alert('✅ Videojuego agregado correctamente');
         this.movieForm.reset();
         this.router.navigate(['/movies']);
       },
-      error: (err) => console.error('ERROR:', err)
+      error: (err) => console.error('❌ ERROR:', err)
     });
 
   }

@@ -5,13 +5,12 @@ import { MovieService } from '../../services/movie.service';
 
 @Component({
   selector: 'app-edit-movie',
-  templateUrl: './edit-movie.component.html',
-  styleUrls: ['./edit-movie.component.css']
+  templateUrl: './edit-movie.component.html'
 })
 export class EditMovieComponent implements OnInit {
 
   movieForm: FormGroup;
-  movieId: string | null = null;
+  movieId!: string;
 
   constructor(
     private fb: FormBuilder,
@@ -19,34 +18,69 @@ export class EditMovieComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
+
     this.movieForm = this.fb.group({
-      title: ['', Validators.required],
-      synopsis: ['', Validators.required],
-      year: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
+      titulo: ['', Validators.required],
+      sinopsis: ['', Validators.required],
+      anio: ['', Validators.required],
       cover: ['', Validators.required]
     });
+
   }
 
-  ngOnInit() {
-    this.movieId = this.route.snapshot.paramMap.get('id');
+  ngOnInit(): void {
 
-    if (this.movieId) {
-      this.movieService.getMovieById(this.movieId).subscribe({
-        next: (movie: any) => this.movieForm.patchValue(movie),
-        error: (err: any) => console.error('❌ Error al cargar la película', err)
-      });
+    this.movieId = this.route.snapshot.paramMap.get('id')!;
+
+    this.movieService.getMovieById(this.movieId).subscribe({
+
+      next: (data) => {
+
+        console.log('VIDEOJUEGO:', data);
+
+        this.movieForm.patchValue({
+          titulo: data.titulo,
+          sinopsis: data.sinopsis,
+          anio: data.anio,
+          cover: data.cover
+        });
+
+      },
+
+      error: (err) => {
+        console.error('ERROR:', err);
+      }
+
+    });
+
+  }
+
+  updateMovie(): void {
+
+    if (this.movieForm.invalid) {
+      alert('Completa todos los campos');
+      return;
     }
+
+    this.movieService.updateMovie(
+      this.movieId,
+      this.movieForm.value
+    ).subscribe({
+
+      next: () => {
+
+        alert('✅ Videojuego actualizado');
+
+        this.router.navigate(['/movies']);
+
+      },
+
+      error: (err) => {
+        console.error('ERROR:', err);
+      }
+
+    });
+
   }
 
-  updateMovie() {
-    if (this.movieId && this.movieForm.valid) {
-      this.movieService.updateMovie(this.movieId, this.movieForm.value).subscribe({
-        next: () => {
-          alert('✅ Actualizado correctamente');
-          this.router.navigate(['/movies']);
-        },
-        error: (err: any) => console.error('❌ Error al actualizar', err)
-      });
-    }
-  }
 }

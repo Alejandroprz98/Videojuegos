@@ -21,31 +21,59 @@ export class MovieComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.movieId = this.route.snapshot.paramMap.get('id')!;
+
     this.loadMovie();
+
   }
 
   loadMovie(): void {
+
     this.movieService.getMovieById(this.movieId).subscribe({
+
       next: (data: any) => {
+
+        console.log('VIDEOJUEGO:', data);
+
         this.movie = data;
+
         this.isLoading = false;
+
       },
-      error: () => {
+
+      error: (err) => {
+
+        console.error(err);
+
         this.error = 'No se pudo cargar el videojuego';
+
         this.isLoading = false;
+
       }
+
     });
+
   }
 
   deleteMovie(): void {
+
     if (confirm('¿Seguro que deseas eliminar?')) {
+
       this.movieService.deleteMovie(this.movieId).subscribe({
+
         next: () => {
-          alert('Eliminado correctamente');
+
+          alert('Videojuego eliminado');
+
           this.router.navigate(['/movies']);
+
         }
+
       });
+
     }
+
   }
+
 }

@@ -1,28 +1,69 @@
 <div class="container mt-4">
-  <h3 class="text-white mb-3">Editar Videojuego</h3>
 
-  <form [formGroup]="movieForm" (ngSubmit)="updateMovie()" class="bg-light p-4 rounded">
+  <h3 class="text-white mb-3">
+    Editar Videojuego
+  </h3>
+
+  <form
+    [formGroup]="movieForm"
+    (ngSubmit)="updateMovie()"
+    class="bg-light p-4 rounded"
+  >
+
     <div class="mb-3">
       <label class="form-label">Título</label>
-      <input type="text" class="form-control" formControlName="title" />
+
+      <input
+        type="text"
+        class="form-control"
+        formControlName="titulo"
+      />
     </div>
 
     <div class="mb-3">
       <label class="form-label">Sinopsis</label>
-      <textarea class="form-control" rows="3" formControlName="synopsis"></textarea>
+
+      <textarea
+        class="form-control"
+        rows="3"
+        formControlName="sinopsis"
+      ></textarea>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Año</label>
-      <input type="number" class="form-control" formControlName="year" />
+
+      <input
+        type="number"
+        class="form-control"
+        formControlName="anio"
+      />
     </div>
 
     <div class="mb-3">
-      <label class="form-label">URL de Portada (Cover)</label>
-      <input type="text" class="form-control" formControlName="cover" />
+      <label class="form-label">Cover</label>
+
+      <input
+        type="text"
+        class="form-control"
+        formControlName="cover"
+      />
     </div>
 
-    <button type="submit" class="btn btn-warning" [disabled]="movieForm.invalid">Actualizar</button>
-    <a routerLink="/" class="btn btn-secondary ms-2">Cancelar</a>
+    <button
+      type="submit"
+      class="btn btn-warning"
+    >
+      Actualizar
+    </button>
+
+    <a
+      routerLink="/movies"
+      class="btn btn-secondary ms-2"
+    >
+      Cancelar
+    </a>
+
   </form>
+
 </div>
