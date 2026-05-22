@@ -1,4 +1,4 @@
-<div *ngIf="movies.length === 0" class="text-center text-light mt-4">
+<div *ngIf="!movies || movies.length === 0" class="text-center text-light mt-4">
   <p>Cargando videojuegos...</p>
 </div>
 
@@ -31,17 +31,18 @@
       <tr *ngFor="let movie of movies">
 
         <!-- TÍTULO -->
-        <td>{{ movie.titulo }}</td>
+        <td>{{ movie.titulo || 'Sin título' }}</td>
 
         <!-- SINOPSIS -->
-        <td>{{ movie.sinopsis }}</td>
+        <td>{{ movie.sinopsis || 'Sin sinopsis' }}</td>
 
         <!-- AÑO -->
-        <td>{{ movie.anio }}</td>
+        <td>{{ movie.anio || '---' }}</td>
 
         <!-- COVER -->
         <td>
-          <img [src]="movie.cover"
+          <img *ngIf="movie.cover"
+               [src]="movie.cover"
                alt="cover"
                style="width:80px; height:60px; object-fit:cover;">
         </td>
