@@ -1,14 +1,14 @@
 <div *ngIf="!movies || movies.length === 0" class="text-center text-light mt-4">
-  <p>Cargando videojuegos...</p>
+  <p>Cargando productos...</p>
 </div>
 
 <div class="container">
 
   <div class="d-flex justify-content-between align-items-center mt-4 mb-3">
-    <h3 class="text-white">Videojuegos disponibles</h3>
+    <h3 class="text-white">Productos disponibles</h3>
 
     <a routerLink="/movies/add" class="btn btn-success">
-      ➕ Agregar Videojuego
+      ➕ Agregar Producto
     </a>
   </div>
 
@@ -16,10 +16,10 @@
 
     <thead class="table-dark">
       <tr>
-        <th>Título</th>
-        <th>Sinopsis</th>
-        <th>Año</th>
-        <th>Cover</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Imagen</th>
         <th>Ver</th>
         <th>Editar</th>
         <th>Eliminar</th>

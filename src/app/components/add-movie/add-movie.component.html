@@ -1,25 +1,25 @@
 <div class="container mt-4">
-  <h3 class="text-white mb-3">Agregar Videojuego</h3>
+  <h3 class="text-white mb-3">Agregar Productos</h3>
 
   <form [formGroup]="movieForm" (ngSubmit)="addMovie()" class="bg-light p-4 rounded">
 
     <div class="mb-3">
-      <label class="form-label">Título</label>
+      <label class="form-label">Nombre</label>
       <input type="text" class="form-control" formControlName="titulo" />
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Sinopsis</label>
+      <label class="form-label">Precio</label>
       <textarea class="form-control" rows="3" formControlName="sinopsis"></textarea>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Año</label>
+      <label class="form-label">Descripción</label>
       <input type="number" class="form-control" formControlName="anio" />
     </div>
 
     <div class="mb-3">
-      <label class="form-label">URL de Portada (Cover)</label>
+      <label class="form-label">Imagen</label>
       <input type="text" class="form-control" formControlName="cover" />
     </div>
 
