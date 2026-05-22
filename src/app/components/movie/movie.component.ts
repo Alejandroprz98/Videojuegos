@@ -8,7 +8,8 @@ import { MovieService } from '../../services/movie.service';
   styleUrls: ['./movie.component.css']
 })
 export class MovieComponent implements OnInit {
-  movieId!: number;
+
+  movieId!: string;
   movie: any;
   isLoading = true;
   error = '';
@@ -20,7 +21,7 @@ export class MovieComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.movieId = Number(this.route.snapshot.paramMap.get('id'));
+    this.movieId = this.route.snapshot.paramMap.get('id')!;
     this.loadMovie();
   }
 
@@ -30,22 +31,20 @@ export class MovieComponent implements OnInit {
         this.movie = data;
         this.isLoading = false;
       },
-      error: (err: any) => {
-        console.error('Error al cargar la película:', err);
-        this.error = 'No se pudo cargar la película';
+      error: () => {
+        this.error = 'No se pudo cargar el videojuego';
         this.isLoading = false;
       }
     });
   }
 
   deleteMovie(): void {
-    if (confirm('¿Seguro que deseas eliminar esta película?')) {
+    if (confirm('¿Seguro que deseas eliminar?')) {
       this.movieService.deleteMovie(this.movieId).subscribe({
         next: () => {
-          alert('Película eliminada correctamente');
+          alert('Eliminado correctamente');
           this.router.navigate(['/movies']);
-        },
-        error: (err) => console.error('Error al eliminar película', err)
+        }
       });
     }
   }

@@ -9,8 +9,9 @@ import { MovieService } from '../../services/movie.service';
   styleUrls: ['./edit-movie.component.css']
 })
 export class EditMovieComponent implements OnInit {
+
   movieForm: FormGroup;
-  movieId: number | null = null;
+  movieId: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -27,11 +28,12 @@ export class EditMovieComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.movieId = Number(this.route.snapshot.paramMap.get('id'));
+    this.movieId = this.route.snapshot.paramMap.get('id');
+
     if (this.movieId) {
       this.movieService.getMovieById(this.movieId).subscribe({
-        next: (movie) => this.movieForm.patchValue(movie),
-        error: (err) => console.error('❌ Error al cargar la película', err)
+        next: (movie: any) => this.movieForm.patchValue(movie),
+        error: (err: any) => console.error('❌ Error al cargar la película', err)
       });
     }
   }
@@ -40,13 +42,11 @@ export class EditMovieComponent implements OnInit {
     if (this.movieId && this.movieForm.valid) {
       this.movieService.updateMovie(this.movieId, this.movieForm.value).subscribe({
         next: () => {
-          alert('✅ Película actualizada correctamente');
-          this.router.navigate(['/']);
+          alert('✅ Actualizado correctamente');
+          this.router.navigate(['/movies']);
         },
-        error: (err) => console.error('❌ Error al actualizar película', err)
+        error: (err: any) => console.error('❌ Error al actualizar', err)
       });
-    } else {
-      alert('Por favor completa todos los campos correctamente.');
     }
   }
 }

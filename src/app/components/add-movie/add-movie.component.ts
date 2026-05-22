@@ -5,10 +5,10 @@ import { MovieService } from '../../services/movie.service';
 
 @Component({
   selector: 'app-add-movie',
-  templateUrl: './add-movie.component.html',
-  styleUrls: ['./add-movie.component.css']
+  templateUrl: './add-movie.component.html'
 })
 export class AddMovieComponent {
+
   movieForm: FormGroup;
 
   constructor(
@@ -16,25 +16,36 @@ export class AddMovieComponent {
     private movieService: MovieService,
     private router: Router
   ) {
+
     this.movieForm = this.fb.group({
-      title: ['', Validators.required],
-      synopsis: ['', Validators.required],
-      year: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
+      titulo: ['', Validators.required],
+      sinopsis: ['', Validators.required],
+      anio: ['', Validators.required],
       cover: ['', Validators.required]
     });
+
   }
 
   addMovie() {
-    if (this.movieForm.valid) {
-      this.movieService.addMovie(this.movieForm.value).subscribe({
-        next: () => {
-          alert('🎬 Película agregada correctamente');
-          this.router.navigate(['/']);
-        },
-        error: (err) => console.error('❌ Error al agregar película', err)
-      });
-    } else {
-      alert('Por favor completa todos los campos correctamente.');
+
+    console.log('FORM VALUE FINAL:', JSON.stringify(this.movieForm.value));
+
+    if (this.movieForm.invalid) {
+      return;
     }
+
+    const data = this.movieForm.value;
+
+    console.log('FORM DATA:', data);
+
+    this.movieService.addMovie(data).subscribe({
+      next: () => {
+        alert('Videojuego agregado correctamente');
+        this.movieForm.reset();
+        this.router.navigate(['/movies']);
+      },
+      error: (err) => console.error('ERROR:', err)
+    });
+
   }
 }

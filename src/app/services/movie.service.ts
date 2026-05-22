@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core'; 
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -6,37 +6,28 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MovieService {
-  private apiUrl = 'https://catalogo-k0at.onrender.com/api/movies';
+
+  private apiUrl = 'https://backend2-5oz8.onrender.com';
 
   constructor(private http: HttpClient) {}
 
-  // 🟢 Obtener todas las películas
   getMovies(): Observable<any[]> {
-    console.log('👉 Llamando al endpoint de películas...');
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  // 🟡 Obtener una película específica por ID
-  getMovieById(id: number): Observable<any> {
-    console.log(`🎬 Obteniendo detalles de la película con ID: ${id}`);
+  getMovieById(id: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
-  // 🟢 Agregar una nueva película
   addMovie(movie: any): Observable<any> {
-    console.log('🎥 Agregando nueva película:', movie);
-    return this.http.post<any>(this.apiUrl, movie);
+    return this.http.post(this.apiUrl, movie);
   }
 
-  // 🟣 Actualizar una película existente
-  updateMovie(id: number, movie: any): Observable<any> {
-    console.log(`✏️ Actualizando película con ID: ${id}`, movie);
-    return this.http.put<any>(`${this.apiUrl}/${id}`, movie);
+  updateMovie(id: string, movie: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, movie);
   }
 
-  // (Opcional) 🔴 Eliminar una película
-  deleteMovie(id: number): Observable<any> {
-    console.log(`🗑️ Eliminando película con ID: ${id}`);
-    return this.http.delete<any>(`${this.apiUrl}/${id}`);
+  deleteMovie(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }
