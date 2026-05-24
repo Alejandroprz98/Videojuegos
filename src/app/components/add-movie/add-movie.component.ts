@@ -20,7 +20,7 @@ export class AddMovieComponent {
     this.movieForm = this.fb.group({
       titulo: ['', [Validators.required, Validators.minLength(2)]],
       sinopsis: ['', [Validators.required, Validators.minLength(10)]],
-      anio: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
+      anio: ['', [Validators.required,  Validators.min(1)]],
       cover: ['', [Validators.required]]
     });
 
