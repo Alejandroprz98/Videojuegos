@@ -43,7 +43,7 @@ export class AddMovieComponent {
 
     this.movieService.addMovie(data).subscribe({
       next: () => {
-        alert('✅ Videojuego agregado correctamente');
+        alert('✅ Producto agregado correctamente');
         this.movieForm.reset();
         this.router.navigate(['/movies']);
       },

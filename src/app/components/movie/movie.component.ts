@@ -46,7 +46,7 @@ export class MovieComponent implements OnInit {
 
         console.error(err);
 
-        this.error = 'No se pudo cargar el videojuego';
+        this.error = 'No se pudo cargar el producto';
 
         this.isLoading = false;
 
@@ -64,7 +64,7 @@ export class MovieComponent implements OnInit {
 
         next: () => {
 
-          alert('Videojuego eliminado');
+          alert('Producto eliminado');
 
           this.router.navigate(['/movies']);
 
