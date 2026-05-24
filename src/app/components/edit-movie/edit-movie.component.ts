@@ -69,7 +69,7 @@ export class EditMovieComponent implements OnInit {
 
       next: () => {
 
-        alert('✅ Videojuego actualizado');
+        alert('✅ Producto actualizado');
 
         this.router.navigate(['/movies']);
 
